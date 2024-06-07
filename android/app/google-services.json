@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "216450047909",
+    "project_id": "crm-buon-truong-dung",
+    "storage_bucket": "crm-buon-truong-dung.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216450047909:android:6682559c5ce3b793a3d24c",
+        "android_client_info": {
+          "package_name": "com.crm_quanao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216450047909-ebq2ot1nb18tdnesug06lc06b7ud7ved.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIhs-zJ7AyrUPXs8NhWvNQckFx66y0MFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216450047909-ebq2ot1nb18tdnesug06lc06b7ud7ved.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

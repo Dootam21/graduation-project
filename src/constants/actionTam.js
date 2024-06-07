@@ -1,0 +1,95 @@
+export const CURRENT_HANG_ID = 'CURRENT_HANG_ID';
+export const CURRENT_CART_BILL_ID = 'CURRENT_CART_BILL_ID';
+export const CURRENT_CART_ORDER_ID = 'CURRENT_CART_ORDER_ID';
+export const CURRENT_CART_THU_ID = 'CURRENT_CART_THU_ID';
+
+
+
+
+export const GET_LIST_HANG = 'GET_LIST_HANG';
+
+
+export const GET_LIST_SUPPLIER = 'GET_LIST_SUPPLIER';
+
+export const GET_LIST_CATEGORY = 'GET_LIST_CATEGORY';
+
+
+
+export const UPDATE_LIST_ALL_COLOR = 'UPDATE_LIST_ALL_COLOR';
+
+export const UPDATE_LIST_ALL_SIZE = 'UPDATE_LIST_ALL_SIZE';
+
+export const CURRENT_CART_STATUS = 'CURRENT_CART_STATUS';
+
+export const SET_LIST_USER = 'SET_LIST_USER';
+
+
+
+
+
+// product
+export const SET_NHAP_ID = 'SET_NHAP_ID';
+export const SET_TRA_ID = 'SET_TRA_ID';
+export const SET_CHI_ID = 'SET_CHI_ID';
+export const SET_TYPE_TRA = 'SET_TYPE_TRA';
+
+
+// thu chi
+export const CURRENT_SOURCE_TITLE = 'CURRENT_SOURCE_TITLE';
+export const CURRENT_SOURCE_ID = 'CURRENT_SOURCE_ID';
+export const GET_DETAIL = 'GET_DETAIL';
+
+
+//user
+export const UPDATE_PHONE = 'UPDATE_PHONE';
+
+
+
+
+
+
+
+// reset reducer 
+export const RESET_ACCOUNT = 'RESET_ACCOUNT';
+export const RESET_CART = 'RESET_CART';
+export const RESET_CATEGORY = 'RESET_CATEGORY';
+export const RESET_COLOR = 'RESET_COLOR';
+export const RESET_CUSTOMER = 'RESET_CUSTOMER';
+export const RESET_HANG = 'RESET_HANG';
+export const RESET_KIEMKHO = 'RESET_KIEMKHO';
+export const RESET_PRODUCT = 'RESET_PRODUCT';
+export const RESET_SIZE = 'RESET_SIZE';
+export const RESET_SUPPLIER = 'RESET_SUPPLIER';
+export const RESET_THUCHI = 'RESET_THUCHI';
+
+
+
+//
+export const LIST_COLOR_OBJECT = 'LIST_COLOR_OBJECT';
+export const LIST_SIZE_OBJECT = 'LIST_SIZE_OBJECT';
+
+
+
+
+export const UPDATE_BANNER_AVATAR = 'UPDATE_BANNER_AVATAR';
+
+
+
+
+export const LIST_HANG_OBJECT = 'LIST_HANG_OBJECT';
+export const LIST_SUPPLIER_OBJECT = 'LIST_SUPPLIER_OBJECT';
+export const LIST_CATEGORY_OBJECT = 'LIST_CATEGORY_OBJECT';
+
+
+export const CURRENT_CART_BILL_ID_TEMP = 'CURRENT_CART_BILL_ID_TEMP';
+export const CURRENT_CART_ORDER_DETAIL = 'CURRENT_CART_ORDER_DETAIL';
+
+
+export const CURRENT_CART_AUTO = 'CURRENT_CART_AUTO';
+export const GET_PRINTER_NAME = 'GET_PRINTER_NAME';
+
+export const ADD_USER_SALES = 'ADD_USER_SALES';
+export const REMOVE_USER_SALES = 'REMOVE_USER_SALES';
+
+
+export const GET_DATA_FILTER = 'GET_DATA_FILTER'

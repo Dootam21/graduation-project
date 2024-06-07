@@ -1,0 +1,6 @@
+module Pods_crm_quanao {
+  umbrella header "Pods-crm_quanao-umbrella.h"
+
+  export *
+  module * { export * }
+}
