@@ -151,67 +151,67 @@ class Home extends Component {
         this.props.categoryAction('current_category_id', 0);
         this.props.productAction('add_quantity', []);
 
-        this.startBackgroundTask();
+        // this.startBackgroundTask();
     }
 
 
-    veryIntensiveTask = async (taskDataArguments) => {
-        const { delay } = taskDataArguments;
-        await new Promise(async resolve => {
-            for (let i = 0; BackgroundService.isRunning(); i++) {
-                await sleep(delay);
-                try {
-                    const response = await fetch('https://truongdo-crmbuon.webi.vn/api/api_notify/api_sent_notify',
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                u_id: this.props.admin.uid,
-                                group_id: this.props.admin.groupId,
-                            })
-                        }
-                    );
+    // veryIntensiveTask = async (taskDataArguments) => {
+    //     const { delay } = taskDataArguments;
+    //     await new Promise(async resolve => {
+    //         for (let i = 0; BackgroundService.isRunning(); i++) {
+    //             await sleep(delay);
+    //             try {
+    //                 const response = await fetch('https://truongdo-crmbuon.webi.vn/api/api_notify/api_sent_notify',
+    //                     {
+    //                         method: 'POST',
+    //                         headers: {
+    //                             'Accept': 'application/json',
+    //                             'Content-Type': 'application/json',
+    //                         },
+    //                         body: JSON.stringify({
+    //                             u_id: this.props.admin.uid,
+    //                             group_id: this.props.admin.groupId,
+    //                         })
+    //                     }
+    //                 );
 
-                    const data = await response.json();
-                    // console.log('eee', {
-                    //     u_id: this.props.admin.uid,
-                    //     group_id: this.props.admin.groupId,
-                    // });
+    //                 const data = await response.json();
+    //                 // console.log('eee', {
+    //                 //     u_id: this.props.admin.uid,
+    //                 //     group_id: this.props.admin.groupId,
+    //                 // });
 
-                    // console.log(data);
-                    var gid = parseInt(this.props.admin.groupId);
+    //                 // console.log(data);
+    //                 var gid = parseInt(this.props.admin.groupId);
 
-                    // if (data.res == 'done') {
-                        if (data.res == 'done' && data.data.includes(gid) ) {
-                        // if (data.res == 'done' && (data.data.includes(gid) || this.props.admin.is_admin == 1)) {
-                        console.log(' -------------------------------------------------------------------- > day thong bao');
-                        PushNotification.localNotificationSchedule({
-                            title: 'CRM quan ao',
-                            message: data.msg,
-                            channelId: 'crm_quanao',
-                            channelName: "crm_qlQuanAO", // (required)
-                            channelDescription: "A channel to categorise your notifications",
-                            repeatTime: 1,
-                            date: new Date(Date.now() + 1 * 1000),
-                        });
-                    }
-                    // this.updateBackgroundTaskNotification(data.data, data.msg);
-                } catch (error) {
-                    console.error('API call error', error);
-                }
-            }
-        })
-    };
+    //                 // if (data.res == 'done') {
+    //                     if (data.res == 'done' && data.data.includes(gid) ) {
+    //                     // if (data.res == 'done' && (data.data.includes(gid) || this.props.admin.is_admin == 1)) {
+    //                     console.log(' -------------------------------------------------------------------- > day thong bao');
+    //                     PushNotification.localNotificationSchedule({
+    //                         title: 'CRM quan ao',
+    //                         message: data.msg,
+    //                         channelId: 'crm_quanao',
+    //                         channelName: "crm_qlQuanAO", // (required)
+    //                         channelDescription: "A channel to categorise your notifications",
+    //                         repeatTime: 1,
+    //                         date: new Date(Date.now() + 1 * 1000),
+    //                     });
+    //                 }
+    //                 // this.updateBackgroundTaskNotification(data.data, data.msg);
+    //             } catch (error) {
+    //                 console.error('API call error', error);
+    //             }
+    //         }
+    //     })
+    // };
 
-    startBackgroundTask = async () => {
-        if (!BackgroundService.isRunning()) {
-            await BackgroundService.start(this.veryIntensiveTask, this.state.options);
-        }
-        // await BackgroundService.updateNotification('New');
-    };
+    // startBackgroundTask = async () => {
+    //     if (!BackgroundService.isRunning()) {
+    //         await BackgroundService.start(this.veryIntensiveTask, this.state.options);
+    //     }
+    //     // await BackgroundService.updateNotification('New');
+    // };
 
 
 

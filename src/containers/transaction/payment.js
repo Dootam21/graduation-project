@@ -7,6 +7,9 @@ import UploadImage from '../elements/UploadImage';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 
+import PushNotification, { Importance } from 'react-native-push-notification';
+import BackgroundService from 'react-native-background-actions';
+
 // import type {Node} from 'react';
 import {
     SafeAreaView,
@@ -37,9 +40,10 @@ const options = {
 
 import styles from './styles.js';
 import { add_chi, add_thu } from '../../services/thuchiService';
-import PaymentQRCode from './PaymentQRCode';
-import { get_qr_code } from '../../services/qrCodeService';
 
+import { get_qr_code, get_transaction } from '../../services/qrCodeService';
+import QRCodeComponent from './QRCodeComponent';
+const sleep = (time) => new Promise((resolve) => setTimeout(() => resolve(), time));
 class Payment extends Component {
     // const { productId } = route.params;
 
@@ -60,6 +64,22 @@ class Payment extends Component {
             modalConfirm: false,
             modalPaymentMethod: false,
             modalQRCode: false,
+            transactions: [],
+            status_transaction: false,
+
+            options: {
+                taskName: 'Example',
+                taskTitle: 'New',
+                taskDesc: 'Desc new',
+                taskIcon: {
+                    name: 'ic_launcher',
+                    type: 'mipmap',
+                },
+                color: '#ff00ff',
+                parameters: {
+                    delay: 100,
+                },
+            }
         };
         // console.log(this.props?.route?.params?.thuAdd);
     }
@@ -83,6 +103,11 @@ class Payment extends Component {
     setChuyenKhoan = (opt) => {
         this.setState({ chuyenkhoan: opt });
     }
+
+    setStatusTransaction = (opt) => {
+        this.setState({ status_transaction: opt });
+    }
+
 
     setTongTien() {
         var newTongTien = 0;
@@ -327,6 +352,67 @@ class Payment extends Component {
         console.log(qrCode);
     }
 
+    async getTransaction() {
+        const trans = await get_transaction();
+        this.setState({ transactions: trans.data.records });
+    }
+
+
+
+    veryIntensiveTask = async (taskDataArguments) => {
+        const { delay } = taskDataArguments;
+        await new Promise(async resolve => {
+            for (let i = 0; BackgroundService.isRunning(); i++) {
+                await sleep(delay);
+                try {
+                    const trans = await get_transaction();
+                    let filteredTransactions = false;
+                    const now = new Date();
+
+                    if (this.state.ghi_chu.trim() === '') {
+                        filteredTransactions = trans.data.records.some(transaction =>
+                            transaction.amount == this.state.tongtien &&
+                            transaction.description.includes('Thanh toan QR') && transaction.description.includes('tai Napas') &&
+                            new Date(transaction.when) < now
+                        );
+                    }
+                    else {
+                        filteredTransactions = trans.data.records.some(transaction =>
+                            transaction.amount == this.state.tongtien &&
+                            transaction.description.includes(`Thanh toan QR ${this.state.ghi_chu}; tai Napas`) &&
+                            new Date(transaction.when) < now
+                        );
+                    }
+
+
+
+                    if (filteredTransactions) {
+                        PushNotification.localNotification({
+                            title: 'CRM quan ao',
+                            message: 'Thanh toán thành công',
+                            channelId: 'crm_quanao',
+                            channelName: "crm_qlQuanAO", // (required)
+                            channelDescription: "A channel to categorise your notifications",
+                            date: new Date(Date.now() + 1 * 1000),
+                        });
+
+                        await BackgroundService.stop();
+                        this.handlePayment();
+                    }
+                } catch (error) {
+                    console.error('API call error', error);
+                }
+            }
+        })
+    };
+
+    startBackgroundTask = async () => {
+        if (!BackgroundService.isRunning()) {
+            await BackgroundService.start(this.veryIntensiveTask, this.state.options);
+        }
+    };
+
+
     render() {
         const { image_show, ghi_chu, phuchi, phuthu, tienmat, chuyenkhoan, tongtien, modalConfirm, modalPaymentMethod, modalQRCode } = this.state;
         return (
@@ -435,6 +521,7 @@ class Payment extends Component {
                     <TouchableOpacity onPress={() => {
                         this.setModalPaymentMethod(true);
                         Keyboard.dismiss();
+                        this.getTransaction();
                     }}>
                         <Text style={styles.txtThanhtoantien}>Thanh toán ({tongtien?.toLocaleString()} đ)</Text>
                     </TouchableOpacity>
@@ -467,13 +554,11 @@ class Payment extends Component {
                             <View style={styles.modalContainerQRCode}>
                                 <View style={styles.modalContent1}>
                                     {/* <Image style={[styles.thumbnail, styles.avatarCustomer]} source={require('../../../asset/images/NoImageProduct.png')} /> */}
-                                    {/* <PaymentQRCode
+                                    <QRCodeComponent
                                         bankCode="ICB"
                                         bankAccount="107873195104"
                                         amount={tongtien.toString()}
                                         message={ghi_chu}
-                                    /> */}
-                                    <QRCode
                                     />
                                 </View>
                             </View>
@@ -511,7 +596,7 @@ class Payment extends Component {
                                 <Text style={styles.bgGrey}></Text>
                                 <TouchableOpacity onPress={() => {
                                     this.setModalPaymentMethod(false);
-                                    this.getQRCode();
+                                    this.startBackgroundTask();
                                     this.setModalQRCode(true);
                                 }}>
                                     <View style={[styles.flexRow, styles.btnThanhtoan]}>

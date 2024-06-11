@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import QrCodeHelper from './QrCodeHelper'; // Adjust the path as necessary
 
-const PaymentQRCode = ({ bankCode, bankAccount, amount, message }) => {
+const QRCodeComponent = ({ bankCode, bankAccount, amount, message }) => {
     const [qrCodeData, setQrCodeData] = useState('');
 
     useEffect(() => {
@@ -31,4 +31,4 @@ const PaymentQRCode = ({ bankCode, bankAccount, amount, message }) => {
 };
 
 
-export default PaymentQRCode;
+export default QRCodeComponent;
