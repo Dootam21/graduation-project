@@ -613,10 +613,10 @@ class ProductDetail extends Component {
                                 <Text style={styles.attrName}>Danh mục:</Text>
                                 <Text style={{ ...styles.value, }}>{cateName}</Text>
                             </View>
-                            <View style={styles.attr}>
+                            {/* <View style={styles.attr}>
                                 <Text style={styles.attrName}>Thương hiệu:</Text>
                                 <Text style={{ ...styles.value, }}>{hangName}</Text>
-                            </View>
+                            </View> */}
                             <View style={styles.attr}>
                                 <Text style={styles.attrName}>Nhà cung cấp:</Text>
                                 <Text style={{ ...styles.value, }}>{suppName}</Text>

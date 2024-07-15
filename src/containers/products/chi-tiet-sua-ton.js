@@ -195,13 +195,7 @@ class ChiTietSuaTon extends Component {
 
                         <Text style={styles.title}>Chi tiết phiếu sửa tồn</Text>
 
-                        <View style={styles.headerRight}>
-                            <TouchableOpacity style={styles.item} onPress={() => this.setModalFilterFW(true)}>
-                                <Svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <Path d="M6.6052 7.1122L0.937779 1.86935C0.602965 1.55962 0.82212 1 1.27823 1H16.766C17.2221 1 17.4413 1.55962 17.1065 1.86935L11.4391 7.1122C11.3365 7.20709 11.2781 7.34049 11.2781 7.48022V18.4977C11.2781 18.9843 10.6546 19.1857 10.3701 18.7908L6.8607 13.9211C6.79919 13.8358 6.76609 13.7332 6.76609 13.628V7.48022C6.76609 7.34049 6.70777 7.20709 6.6052 7.1122Z" strokeWidth="2" stroke="#fff" />
-                                </Svg>
-                            </TouchableOpacity>
-                        </View>
+                        
                     </View>
                     <ScrollView style={{ backgroundColor: "#fff" }}>
                         {/* <Text style={[styles.txtChuThich, styles.colorRed]}>Ghi chú: Chưa có ghi chú</Text> */}

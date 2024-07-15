@@ -220,7 +220,7 @@ class EditDetail extends Component {
                                 />
                             </View>
                         </View>
-                        <View style={[styles.flexRow, styles.productAttr]}>
+                        {/* <View style={[styles.flexRow, styles.productAttr]}>
                             <Text style={[styles.flexWidth, styles.attrName1]}>Thương hiệu</Text>
                             <View style={styles.flexWidth}>
                                 <ModalChonTH
@@ -228,7 +228,7 @@ class EditDetail extends Component {
                                     idHang={data?.hang_id}
                                 />
                             </View>
-                        </View>
+                        </View> */}
                         <View style={[styles.flexRow, styles.productAttr]}>
                             <Text style={[styles.flexWidth, styles.attrName1]}>Nhà cung cấp</Text>
                             <View style={styles.flexWidth}>

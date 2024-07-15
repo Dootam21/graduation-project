@@ -326,7 +326,7 @@ renderPrintItem(e)
     if(e.name)
     {
         return (
-            <TouchableOpacity onPress={() => this.connect(e)}>
+            <TouchableOpacity key={e} onPress={() => this.connect(e)}>
                 <Text style={styles.bluetoothDevices}>{e.name || 'UNKNOWN'}</Text>
             </TouchableOpacity>
         );
@@ -349,7 +349,7 @@ renderPrintItem(e)
                             </TouchableOpacity>
                         </View>
 
-                        <Text style={styles.title}>Chi tiết toa nhập</Text>
+                        <Text style={styles.title}>Chọn máy in</Text>
 
                         <View style={[styles.headerRight]}>
 
@@ -361,7 +361,7 @@ renderPrintItem(e)
                             <Text style={styles.titleBluetoothDevice}>Các thiết bị đã ghép đôi</Text>
                             {
                                 pairedDevices.map((e) => (
-                                    <TouchableOpacity onPress={() => this.connect(e)}>
+                                    <TouchableOpacity key={e} onPress={() => this.connect(e)}>
                                         <Text style={styles.bluetoothDevices}>{e.name || 'UNKNOWN'}</Text>
                                     </TouchableOpacity>
                                 ))

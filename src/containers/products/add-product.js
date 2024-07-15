@@ -645,7 +645,7 @@ class AddProduct extends Component {
                                             {errors.category_id && touched.category_id ? (
                                                 <Text style={styles.textValidate}>{errors.category_id}</Text>
                                             ) : null}
-                                            {this.state.isSelected &&
+                                            {/* {this.state.isSelected &&
                                                 <View style={styles.attr}>
                                                     <Text style={styles.attrName}>Thương hiệu</Text>
                                                     <ModalChonTH
@@ -653,7 +653,7 @@ class AddProduct extends Component {
                                                         idHang={values.hang_id}
                                                     />
                                                 </View>
-                                            }
+                                            } */}
                                             <View style={styles.attr}>
                                                 <Text style={styles.attrName}>Nhà cung cấp</Text>
                                                 <ModalChonNCC
